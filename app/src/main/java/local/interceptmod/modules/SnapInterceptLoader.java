@@ -30,27 +30,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.findClass;
-import static local.interceptmod.modules.Obfuscator.CbcEncryptionAlgorithmDecrypt;
-import static local.interceptmod.modules.Obfuscator.CbcEncryptionAlgorithmKlass;
-import static local.interceptmod.modules.Obfuscator.EncryptionAlgorithmInterface;
-import static local.interceptmod.modules.Obfuscator.ExpectedVersion;
-import static local.interceptmod.modules.Obfuscator.MediaCacheEntryConstructorFirstParam;
-import static local.interceptmod.modules.Obfuscator.MediaCacheEntryKlass;
-import static local.interceptmod.modules.Obfuscator.RootDetectorFirst;
-import static local.interceptmod.modules.Obfuscator.RootDetectorForth;
-import static local.interceptmod.modules.Obfuscator.RootDetectorKlass;
-import static local.interceptmod.modules.Obfuscator.RootDetectorSecond;
-import static local.interceptmod.modules.Obfuscator.RootDetectorThird;
-import static local.interceptmod.modules.Obfuscator.SnapEventGetCacheKey;
-import static local.interceptmod.modules.Obfuscator.SnapEventIsVideo;
-import static local.interceptmod.modules.Obfuscator.SnapEventIsZipped;
-import static local.interceptmod.modules.Obfuscator.SnapEventKlass;
-import static local.interceptmod.modules.Obfuscator.SnapEventTimestamp;
-import static local.interceptmod.modules.Obfuscator.SnapEventUsername;
-import static local.interceptmod.modules.Obfuscator.VersionCode;
 
-
-public class SnapInterceptLoader implements IXposedHookLoadPackage {
+public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
 
 
     private class RootDetectorOverrides extends XC_MethodReplacement {

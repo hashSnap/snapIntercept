@@ -1,27 +1,27 @@
 package local.interceptmod.modules;
 
-class Obfuscator {
+interface Obfuscator {
     // Snapchat version
-    final static int VersionCode = 1367;
-    final static String ExpectedVersion = "10.18.2.0";
+    int VersionCode = 1367;
+    String ExpectedVersion = "10.18.2.0";
     // Snap event
-    final static String SnapEventKlass = "lne";
-    final static String SnapEventGetCacheKey = "K";
-    final static String SnapEventIsVideo = "cX_";
-    final static String SnapEventUsername = "al";
-    final static String SnapEventTimestamp = "t";
-    final static String SnapEventIsZipped= "am";
+    String SnapEventKlass = "lne";
+    String SnapEventGetCacheKey = "K";
+    String SnapEventIsVideo = "cX_";
+    String SnapEventUsername = "al";
+    String SnapEventTimestamp = "t";
+    String SnapEventIsZipped= "am";
     // Media cache
-    final static String MediaCacheEntryKlass = "lrm";
-    final static String MediaCacheEntryConstructorFirstParam = "npz";
+    String MediaCacheEntryKlass = "lrm";
+    String MediaCacheEntryConstructorFirstParam = "npz";
     // Encryption
-    final static String CbcEncryptionAlgorithmKlass = "com.snapchat.android.framework.crypto.CbcEncryptionAlgorithm";
-    final static String CbcEncryptionAlgorithmDecrypt = "b";
-    final static String EncryptionAlgorithmInterface = "com.snapchat.android.framework.crypto.EncryptionAlgorithm";
+    String CbcEncryptionAlgorithmKlass = "com.snapchat.android.framework.crypto.CbcEncryptionAlgorithm";
+    String CbcEncryptionAlgorithmDecrypt = "b";
+    String EncryptionAlgorithmInterface = "com.snapchat.android.framework.crypto.EncryptionAlgorithm";
     // Root detection
-    final static String RootDetectorKlass = "muq";
-    final static String RootDetectorFirst = "b";
-    final static String RootDetectorSecond = "c";
-    final static String RootDetectorThird = "d";
-    final static String RootDetectorForth = "e";
+    String RootDetectorKlass = "muq";
+    String RootDetectorFirst = "b";
+    String RootDetectorSecond = "c";
+    String RootDetectorThird = "d";
+    String RootDetectorForth = "e";
 }
