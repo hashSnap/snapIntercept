@@ -53,7 +53,7 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
     @Override
     public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
         Context mContext;
-        final ConcurrentHashMap<String, Object> mCacheKeysMap = new ConcurrentHashMap();
+        final ConcurrentHashMap<String, Object> mCacheKeysMap = new ConcurrentHashMap<>();
 
         if(!lpparam.packageName.equals("com.snapchat.android")) {
 
@@ -215,12 +215,16 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
     }
 
     private File getFileBasePath(SnapInfo snapInfo) {
+        Boolean wasSuccesful;
         String baseDir = Environment.getExternalStorageDirectory().getAbsolutePath();
 
         String path = baseDir+File.separator+"interceptmod"+File.separator+snapInfo.mUsername;
 
         File filePath = new File(path);
-        filePath.mkdirs();
+        wasSuccesful = filePath.mkdirs();
+        if (!wasSuccesful){
+            log("error creating dir");
+        }
         return filePath;
     }
 
