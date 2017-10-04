@@ -56,16 +56,16 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
         final ConcurrentHashMap<String, Object> mCacheKeysMap = new ConcurrentHashMap<>();
 
         if(!lpparam.packageName.equals("com.snapchat.android")) {
-
             return;
         }
+
         log("Loaded app: " + lpparam.packageName);
         Object activityThread = XposedHelpers.callStaticMethod(findClass("android.app.ActivityThread", null), "currentActivityThread");
         mContext = (Context) XposedHelpers.callMethod(activityThread, "getSystemContext");
         PackageInfo snapchatPackage = mContext.getPackageManager().getPackageInfo(lpparam.packageName, 0);
         if(snapchatPackage.versionCode != VersionCode) {
-            log("Wrong APK build. Ensure version "+ExpectedVersion+" is installed.");
-            Toast.makeText(mContext,"SnapIntercept: Wrong APK build. Ensure version "+ExpectedVersion+" is installed.",Toast.LENGTH_LONG).show();
+            log("Wrong Snapchat version. Ensure version " + ExpectedVersion + " is installed.");
+            Toast.makeText(mContext, "SnapIntercept: Wrong Snapchat version. Ensure version " + ExpectedVersion + " is installed.", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -89,7 +89,7 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
                 String username = (String)XposedHelpers.getObjectField(snapEvent,SnapEventUsername);
                 long timestamp = XposedHelpers.getLongField(snapEvent,SnapEventTimestamp);
 
-                log("isVideo="+isVideo+" username ="+username+" timestamp="+timestamp);
+                log("isVideo=" + isVideo + " username =" + username + " timestamp="+timestamp);
 
                 SnapInfo snapInfo = new SnapInfo();
                 snapInfo.mUsername = username;
@@ -115,12 +115,11 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
 
                         String cacheKey = (String)param.args[1];
                         Object encryptionObject = param.args[2];
-                        log("in media cache entry hook for object"+cacheKey);
+                        log("in media cache entry hook for object" + cacheKey);
                         if(mCacheKeysMap.containsKey(cacheKey)) {
                             log("contains key, adding additional field");
                             Object snapInfo = mCacheKeysMap.get(cacheKey);
                             XposedHelpers.setAdditionalInstanceField(encryptionObject,AdditionalFieldSnapInfo,snapInfo);
-
                         }
                     }
                 });
@@ -158,9 +157,6 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
                         param.setResult(newStream);
                     }
                 });
-
-
-
     }
 
     private InputStream saveStream(SnapInfo snapInfo, InputStream input) throws Exception {
@@ -215,14 +211,14 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
     }
 
     private File getFileBasePath(SnapInfo snapInfo) {
-        Boolean wasSuccesful;
+        Boolean wasSuccessful;
         String baseDir = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        String path = baseDir+File.separator+"interceptmod"+File.separator+snapInfo.mUsername;
+        String path = baseDir + File.separator + "interceptmod" + File.separator+snapInfo.mUsername;
 
         File filePath = new File(path);
-        wasSuccesful = filePath.mkdirs();
-        if (!wasSuccesful){
+        wasSuccessful = filePath.mkdirs();
+        if (!wasSuccessful){
             log("error creating dir");
         }
         return filePath;
