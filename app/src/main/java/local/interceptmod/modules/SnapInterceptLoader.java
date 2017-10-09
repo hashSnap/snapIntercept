@@ -214,7 +214,7 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
         Boolean wasSuccessful;
         String baseDir = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-        String path = baseDir + File.separator + "interceptmod" + File.separator+snapInfo.mUsername;
+        String path = baseDir + File.separator + "snapintercept" + File.separator+snapInfo.mUsername;
 
         File filePath = new File(path);
         wasSuccessful = filePath.mkdirs();
