@@ -2,24 +2,24 @@ package local.interceptmod.modules;
 
 interface Obfuscator {
     // Snapchat version
-    int VersionCode = 1371;
-    String ExpectedVersion = "10.18.6.0";
+    int VersionCode = 1377;
+    String ExpectedVersion = "10.19.0.0";
     // Snap event
-    String SnapEventKlass = "lne"; 
-    String SnapEventGetCacheKey = "K"; 
-    String SnapEventIsVideo = "cX_"; 
-    String SnapEventUsername = "al";
+    String SnapEventKlass = "mff"; // "-FirstFrame"
+    String SnapEventGetCacheKey = "L";
+    String SnapEventIsVideo = "do_";
+    String SnapEventUsername = "an";
     String SnapEventTimestamp = "t";
-    String SnapEventIsZipped= "am"; 
+    String SnapEventIsZipped= "ao";
     // Media cache
-    String MediaCacheEntryKlass = "lrm"; 
-    String MediaCacheEntryConstructorFirstParam = "nqa"; 
+    String MediaCacheEntryKlass = "mjt"; // ("mCache", this.a).a("mKey", this.b)
+    String MediaCacheEntryConstructorFirstParam = "ole";
     // Encryption
     String CbcEncryptionAlgorithmKlass = "com.snapchat.android.framework.crypto.CbcEncryptionAlgorithm"; 
     String CbcEncryptionAlgorithmDecrypt = "b"; 
     String EncryptionAlgorithmInterface = "com.snapchat.android.framework.crypto.EncryptionAlgorithm"; 
     // Root detection
-    String RootDetectorKlass = "mur"; 
+    String RootDetectorKlass = "nps"; // "/sbin/su", "/system/bin/su",
     String RootDetectorFirst = "b"; 
     String RootDetectorSecond = "c"; 
     String RootDetectorThird = "d"; 
