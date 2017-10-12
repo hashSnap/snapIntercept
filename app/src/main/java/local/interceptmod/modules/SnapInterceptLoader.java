@@ -2,6 +2,7 @@ package local.interceptmod.modules;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import static de.robv.android.xposed.XposedHelpers.findClass;
 
 public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
 
+    private Context mContext;
 
     private class RootDetectorOverrides extends XC_MethodReplacement {
         @Override
@@ -52,7 +54,7 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
 
     @Override
     public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
-        Context mContext;
+
         final ConcurrentHashMap<String, Object> mCacheKeysMap = new ConcurrentHashMap<>();
 
         if(!lpparam.packageName.equals("com.snapchat.android")) {
@@ -162,6 +164,7 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
     private InputStream saveStream(SnapInfo snapInfo, InputStream input) throws Exception {
         String fileName = generateFileName(snapInfo);
         File f = new File(getFileBasePath(snapInfo),fileName);
+        MediaScannerConnection.scanFile(mContext, new String[] { f.getPath() }, new String[] { "image/jpeg" }, null);
         boolean fileCreated = f.createNewFile();
         if(fileCreated) {
             copyInputStreamToFile(input, f);
@@ -176,6 +179,7 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
     private InputStream saveZipStream(SnapInfo snapInfo, InputStream input) throws Exception {
         String fileName = generateFileName(snapInfo);
         File mediaFile = new File(getFileBasePath(snapInfo),fileName);
+        MediaScannerConnection.scanFile(mContext, new String[] { mediaFile.getPath() }, new String[] { "image/jpeg" }, null);
 
         boolean fileCreated = mediaFile.createNewFile();
         if(fileCreated) {
