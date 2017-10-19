@@ -2,8 +2,8 @@ package local.interceptmod.modules;
 
 interface Obfuscator {
     // Snapchat version
-    int VersionCode = 1377;
-    String ExpectedVersion = "10.19.0.0";
+    int VersionCode = 1380;
+    String ExpectedVersion = "10.19.5.0";
     // Snap event
     String SnapEventKlass = "mff"; // "-FirstFrame"
     String SnapEventGetCacheKey = "L";

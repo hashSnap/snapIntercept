@@ -5,10 +5,10 @@ android {
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "local.interceptmod"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
-        versionCode 3
-        versionName "1.0.11"
+        versionCode 4
+        versionName "1.0.12"
     }
     buildTypes {
         release {
