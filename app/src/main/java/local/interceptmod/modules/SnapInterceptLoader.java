@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.media.MediaScannerConnection;
 import android.os.Environment;
-import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.ByteArrayOutputStream;
@@ -67,7 +66,6 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
         PackageInfo snapchatPackage = mContext.getPackageManager().getPackageInfo(lpparam.packageName, 0);
         if(snapchatPackage.versionCode != VersionCode) {
             log("Wrong Snapchat version. Ensure version " + ExpectedVersion + " is installed.");
-            Toast.makeText(mContext, "SnapIntercept: Wrong Snapchat version. Ensure version " + ExpectedVersion + " is installed.", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -223,7 +221,7 @@ public class SnapInterceptLoader implements IXposedHookLoadPackage, Obfuscator {
         File filePath = new File(path);
         wasSuccessful = filePath.mkdirs();
         if (!wasSuccessful){
-            log("error creating dir");
+            log("dir not created or already exists");
         }
         return filePath;
     }
