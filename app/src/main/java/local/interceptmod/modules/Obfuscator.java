@@ -2,8 +2,8 @@ package local.interceptmod.modules;
 
 interface Obfuscator {
     // Snapchat version
-    int VersionCode = 1694;
-    String ExpectedVersion = "10.31.0.0";
+    int VersionCode = 1708;
+    String ExpectedVersion = "10.31.5.0";
     // Snap event - everything here is in the file of SnapEventKlass
     String SnapEventKlass = "vqb"; // find the file with "-FirstFrame" in it
     String SnapEventGetCacheKey = "ai"; // return ai() + "-FirstFrame";
